@@ -67,7 +67,7 @@ images:
   category: DB
   type: Default
 - name: metakungfu_locomotive_cms
-  source: metakungfu/locomotive_cms:latest
+  source: metakungfu/locomotive_cms:2.4.1
   category: WEB
   type: Default
   ports:
