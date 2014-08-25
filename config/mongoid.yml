@@ -23,6 +23,6 @@ production:
       # heroku
       # uri: <%= ENV['MONGOHQ_URL'] %>
       hosts:
-        - localhost:27017
+        - <%= "#{ENV['MONGODB_PORT_27017_TCP_ADDR'] || 'localhost' }:27017" %>
   options:
     identity_map_enabled: true
