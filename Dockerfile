@@ -11,7 +11,7 @@ RUN apt-get update &&\
     libcurl4-openssl-dev \
     imagemagick
 
-ENV RAILS_ENV development
+ENV RAILS_ENV production
 ENV USE_ENV true
 
 RUN /usr/sbin/useradd --create-home --home-dir /opt/locomotive_cms --shell /bin/bash locomotive_cms
