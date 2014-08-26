@@ -14,16 +14,13 @@ RUN apt-get update &&\
 ENV RAILS_ENV production
 ENV USE_ENV true
 
-RUN /usr/sbin/useradd --create-home --home-dir /opt/locomotive_cms --shell /bin/bash locomotive_cms
-
 # The repo of the app could be found here: https://github.com/gregory/cms.git
 ADD . /opt/locomotive_cms/app
-RUN chown -R locomotive_cms:locomotive_cms /opt/locomotive_cms/app
 
-USER locomotive_cms
 WORKDIR /opt/locomotive_cms/app
 RUN bundle install --deployment
 RUN bundle exec rake assets:precompile
 
+EXPOSE 80
 CMD echo "Cms::Application.config.secret_token = '$(bundle exec rake secret)'" > config/initializers/secret_token.rb &&\
-    bundle exec unicorn_rails  -p 3000
+    bundle exec unicorn_rails -p 80
