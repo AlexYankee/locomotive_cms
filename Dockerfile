@@ -14,7 +14,7 @@ RUN apt-get update &&\
 ENV RAILS_ENV production
 ENV USE_ENV true
 
-# The repo of the app could be found here: https://github.com/gregory/cms.git
+# The repo of the app could be found here: https://github.com/gregory/locomotive_cms.git
 ADD . /opt/locomotive_cms/app
 
 WORKDIR /opt/locomotive_cms/app
