@@ -69,6 +69,7 @@ GEM
       carrierwave-mongoid (~> 0.6.0)
       money (~> 5.0)
       mongoid (~> 3.1.6)
+    dalli (2.7.2)
     devise (2.2.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -265,6 +266,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails (~> 1.0.3)
+  dalli
   locomotive_cms (~> 2.4.1)
   rails (= 3.2.17)
   sass-rails (~> 3.2.3)

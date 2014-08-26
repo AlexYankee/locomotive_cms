@@ -7,6 +7,7 @@ gem 'rails', '3.2.17'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'locomotive_cms', '~> 2.4.1', require: 'locomotive/engine'
+gem 'dalli'
 
 # Gems used only for assets and not required
 # in production environments by default.
