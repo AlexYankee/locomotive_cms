@@ -92,7 +92,33 @@ images:
     value: assets
   - variable: S3_BUCKET_REGION
     value: eu-west-1
-  - variable: MEMCAHED_PASS
+  - variable: MEMCACHED_PASS
+    value: password
+- name: metakungfu_locomotive-cms_2
+  source: metakungfu/locomotive-cms:2.4.1
+  category: WEB
+  type: Default
+  links:
+  - service: mongo
+    alias: mongodb
+  - service: tutum_memcached
+    alias: memcached
+  environment:
+  - variable: SENDGRID_USERNAME
+    value: foo
+  - variable: SENDGRID_PASSWORD
+    value: bar
+  - variable: SENDGRID_DOMAIN
+    value: domain
+  - variable: S3_KEY_ID
+    value: key
+  - variable: S3_SECRET_KEY
+    value: secret
+  - variable: S3_BUCKET
+    value: assets
+  - variable: S3_BUCKET_REGION
+    value: eu-west-1
+  - variable: MEMCACHED_PASS
     value: password
 - name: mongo
   source: mongo:latest
@@ -121,21 +147,12 @@ images:
   links:
   - service: metakungfu_locomotive-cms_1
     alias: metakungfu_locomotive-cms_1
-  - service: metakungfu_locomotive-cms_1
-    alias: metakungfu_locomotive-cms_1
+  - service: metakungfu_locomotive-cms_2
+    alias: metakungfu_locomotive-cms_2
 - name: tutum_memcached
   source: tutum/memcached:latest
   category: STORAGE
   type: Default
-- name: metakungfu_locomotive-cms_1
-  source: metakungfu/locomotive-cms:2.4.1
-  category: WEB
-  type: Default
-  links:
-  - service: mongo
-    alias: mongodb
-  - service: tutum_memcached
-    alias: memcached
   environment:
-  - variable: MEMCAHED_PASS
+  - variable: MEMCACHED_PASS
     value: password
