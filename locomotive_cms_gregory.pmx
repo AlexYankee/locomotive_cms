@@ -3,7 +3,6 @@ name: locomotive_cms_gregory
 description: "This Locomotive Panamax template will set you up with a production ready
   locomotive_cms instance load balanced by HAProxy. Ngrok will let you access it from the outside world.\r\n"
 keywords: cms, locomotive_cms, rails, haproxy, mongodb
-recommended: true
 type: Rails
 documentation: |
   #Locomotive_cms Panamax Template Instructions:
@@ -130,7 +129,7 @@ images:
   links:
   - service: web2
     alias: web2
-- name: proxy
+- name: ngrok
   source: wizardapps/ngrok:latest
   category: proxy
   type: Default
