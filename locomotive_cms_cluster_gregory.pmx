@@ -60,6 +60,10 @@ documentation: |
     * S3_BUCKET: your amazon bucket - ex: images
     * S3_BUCKET_REGION: your amamzon bucket region - ex: eu-west-1
 
+    You'll have to assign the same password you've set for memcached
+
+    *MEMCACHED_PASS: password
+
     [Ngrok](https://ngrok.com) is used to access your app to the outside world.
     Using a domain is recommended.
 
