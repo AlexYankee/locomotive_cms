@@ -73,7 +73,7 @@ images:
   category: DB
   type: Default
 - name: web1
-  source: metakungfu/locomotive_cms:2.4.1
+  source: metakungfu/locomotive-cms:2.4.1
   category: WEB
   type: Rails
   links:
@@ -97,7 +97,7 @@ images:
   - variable: SERVE_STATIC_ASSETS
     value: 'true'
 - name: web2
-  source: metakungfu/locomotive_cms:2.4.1
+  source: metakungfu/locomotive-cms:2.4.1
   category: WEB
   type: Rails
   links:
