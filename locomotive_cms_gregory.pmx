@@ -1,8 +1,8 @@
 ---
 name: locomotive_cms_gregory
 description: "This Locomotive Panamax template will set you up with a production ready
-  locomotive_cms instance load balanced by HAProxy. Ngrok will let you access it from the outside world.\r\n"
-keywords: cms, locomotive_cms, rails, haproxy, mongodb
+  locomotive_cms instance. Ngrok will let you access it from the outside world.\r\n"
+keywords: cms, locomotive_cms, rails
 type: Rails
 documentation: |
   #Locomotive_cms Panamax Template Instructions:
@@ -16,7 +16,7 @@ documentation: |
 
   ## How to push a static template to your cms
 
-  [Please check the awesom documentation](http://doc.locomotivecms.com/get-started)
+  [Please check the awesom documentation]()http://doc.locomotivecms.com/get-started)
 
   To give you an idea, the documentation website has been made with [locomotive_cms & wagon it self](https://github.com/locomotivecms/documentation)
   [This tutorial](http://doc.locomotivecms.com/making-blog) will drive you through all the steps to build a blog
@@ -24,7 +24,7 @@ documentation: |
   ## System Requirements:
 
   Minimum Recommanded: 1 Core, 1Gb of RAM
-  Best Performance: 2Core, 2Gb of RAM
+  Best Performance: 2Core, 2Gb of Ram
   Optimal Performance: 4Core, 4Gb of RAM
 
   ## Panamax Install instructions
@@ -71,70 +71,40 @@ images:
   source: mongo:latest
   category: DB
   type: Default
-- name: web1
-  source: metakungfu/locomotive-cms:2.4.1
+- name: metakungfu_locomotive_cms
+  source: metakungfu/locomotive_cms:2.4.1
   category: WEB
-  type: Rails
-  links:
-  - service: mongo_latest
-    alias: mongodb
-  environment:
-  - variable: SENDGRID_USERNAME
-    value: foo
-  - variable: SENDGRID_PASSWORD
-    value: bar
-  - variable: SENDGRID_DOMAIN
-    value: domain
-  - variable: S3_KEY_ID
-    value: s3_key_id
-  - variable: S3_SECRET_KEY
-    value: secret
-  - variable: S3_BUCKET
-    value: images
-  - variable: S3_BUCKET_REGION
-    value: eu-west-1
-  - variable: SERVE_STATIC_ASSETS
-    value: 'true'
-- name: web2
-  source: metakungfu/locomotive-cms:2.4.1
-  category: WEB
-  type: Rails
-  links:
-  - service: mongo_latest
-    alias: mongodb
-  environment:
-  - variable: SENDGRID_USERNAME
-    value: foo
-  - variable: SENDGRID_PASSWORD
-    value: bar
-  - variable: SENDGRID_DOMAIN
-    value: domain
-  - variable: S3_KEY_ID
-    value: s3_key_id
-  - variable: S3_SECRET_KEY
-    value: secret
-  - variable: S3_BUCKET
-    value: images
-  - variable: S3_BUCKET_REGION
-    value: eu-west-1
-  - variable: SERVE_STATIC_ASSETS
-    value: 'true'
-- name: load_balancer
-  source: tutum/haproxy:latest
-  category: proxy
   type: Default
+  ports:
+  - host_port: '80'
+    container_port: '3000'
+    proto: TCP
   links:
-  - service: web1
-    alias: web1
-  links:
-  - service: web2
-    alias: web2
-- name: ngrok
+  - service: mongo_latest
+    alias: mongodb
+  environment:
+  - variable: SENDGRID_USERNAME
+    value: foo
+  - variable: SENDGRID_PASSWORD
+    value: bar
+  - variable: SENDGRID_DOMAIN
+    value: domain
+  - variable: S3_KEY_ID
+    value: s3_key_id
+  - variable: S3_SECRET_KEY
+    value: secret
+  - variable: S3_BUCKET
+    value: images
+  - variable: S3_BUCKET_REGION
+    value: eu-west-1
+  - variable: SERVE_STATIC_ASSETS
+    value: 'true'
+- name: wizardapps_ngrok
   source: wizardapps/ngrok:latest
   category: proxy
   type: Default
   links:
-  - service: load_balancer
+  - service: metakungfu_locomotive_cms
     alias: APP
   environment:
   - variable: NGROK_SUBDOMAIN
