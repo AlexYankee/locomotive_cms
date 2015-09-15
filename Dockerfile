@@ -21,6 +21,8 @@ WORKDIR /opt/locomotive_cms/app
 RUN bundle install --deployment
 RUN bundle exec rake assets:precompile
 
+RUN echo "Cms::Application.config.secret_token = '$(bundle exec rake secret)'" > config/initializers/secret_token.rb
+
 EXPOSE 80
-CMD echo "Cms::Application.config.secret_token = '$(bundle exec rake secret)'" > config/initializers/secret_token.rb &&\
-    bundle exec unicorn_rails -p 80
+
+CMD bundle exec unicorn_rails -p 80
