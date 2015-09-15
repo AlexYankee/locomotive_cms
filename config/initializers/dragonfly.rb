@@ -2,7 +2,7 @@ require 'dragonfly'
 
 ## initialize Dragonfly ##
 
-app = Dragonfly[:images]
+app = Dragonfly.app(:images)
 app.configure_with(:rails)
 app.configure_with(:imagemagick)
 
