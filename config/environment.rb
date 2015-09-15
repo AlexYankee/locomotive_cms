@@ -5,10 +5,10 @@ require File.expand_path('../application', __FILE__)
 Cms::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => ENV['SENDGRID_USERNAME'],
-  :password => ENV['SENDGRID_PASSWORD'],
-  :domain => ENV['SENDGRID_DOMAIN'],
-  :address => 'smtp.sendgrid.net',
+  :user_name => ENV['MANDRILL_USERNAME'],
+  :password => ENV['MANDRILL_PASSWORD'],
+  :domain => ENV['MANDRILL_DOMAIN'],
+  :address => 'smtp.mandrillapp.com',
   :port => 587,
   :authentication => :plain,
   :enable_starttls_auto => true

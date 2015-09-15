@@ -19,7 +19,10 @@ Cms::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-
+  config.action_dispatch.rack_cache = {
+      metastore:   "redis://#{ENV['REDIS_PORT_6379_TCP_ADDR']}:6379/1/metastore",
+      entitystore: "redis://#{ENV['REDIS_PORT_6379_TCP_ADDR']}:6379/1/entitystore"
+  }
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -41,7 +44,7 @@ Cms::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, ENV['MEMCACHED_PORT_11211_TCP_ADDR'], {namespace: Cms, expires_in: 1.day, compress: true, username: 'admin', password: ENV['MEMCACHED_PASS'] }
+  config.cache_store = :reds_store, "redis://#{ENV['REDIS_PORT_6379_TCP_ADDR']}:6379/0/cache", {namespace: Cms, expires_in: 1.day }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

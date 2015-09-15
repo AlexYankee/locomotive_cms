@@ -1,6 +1,6 @@
 FROM centurylinklabs/ruby-base:2.1.2
 
-MAINTAINER Gregory Horion <i@gregory.io>
+MAINTAINER AMar4enko <amar4enko@gmail.com>
 
 RUN apt-get update &&\
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
