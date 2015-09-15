@@ -22,8 +22,10 @@ production:
       database: locomotive_production
       # heroku
       # uri: <%= ENV['MONGOHQ_URL'] %>
+      <% unless ENV['MONGODB_NOAUTH'] %>
       username: <%= ENV['MONGODB_USERNAME'] %>
       password: <%= ENV['MONGODB_PASSWORD'] %>
+      <% end %>
       hosts:
         - <%= "#{ENV['MONGODB_PORT_27017_TCP_ADDR'] || 'localhost' }:27017" %>
   options:

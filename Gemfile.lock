@@ -252,6 +252,9 @@ GEM
     redis-rack (1.4.4)
       rack (~> 1.4.0)
       redis-store (~> 1.1.4)
+    redis-rack-cache (1.2.2)
+      rack-cache (~> 1.2)
+      redis-store (~> 1.1.0)
     redis-rails (3.2.4)
       redis-actionpack (~> 3.2.4)
       redis-activesupport (~> 3.2.4)
@@ -264,7 +267,7 @@ GEM
     ruby-hmac (0.4.0)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
-    sass (3.4.18)
+    sass (3.3.13)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -300,10 +303,14 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails (~> 2.0.0)
+  dragonfly (~> 1.0.11)
   locomotive_cms (~> 2.5.6)
+  rack-cache
   rails (= 3.2.21)
+  redis-rack-cache
   redis-rails
-  sass-rails (~> 3.2.3)
+  sass (= 3.3.13)
+  sass-rails
   therubyracer
   uglifier (>= 1.0.3)
   unicorn

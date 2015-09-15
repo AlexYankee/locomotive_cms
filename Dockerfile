@@ -1,4 +1,4 @@
-FROM centurylinklabs/ruby-base:2.1.2
+FROM ruby:2.1
 
 MAINTAINER AMar4enko <amar4enko@gmail.com>
 

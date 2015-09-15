@@ -1,21 +1,26 @@
 require 'dragonfly'
 
-## initialize Dragonfly ##
+# Configure
+Dragonfly.app.configure do
+  plugin :imagemagick
 
-app = Dragonfly.app(:images)
-app.configure_with(:rails)
-app.configure_with(:imagemagick)
+  secret "907593f1a9b98002b74e27e4581b51d6136c6c18ee3586f195e73d3b1a74eb95"
 
-## configure it ##
+  url_format '/images/dynamic/:job/:basename.:format'
 
-Dragonfly[:images].configure do |c|
-  # Convert absolute location needs to be specified
-  # to avoid issues with Phusion Passenger not using $PATH
-  c.convert_command  = `which convert`.strip.presence || "/usr/local/bin/convert"
-  c.identify_command = `which identify`.strip.presence || "/usr/local/bin/identify"
+  datastore :file,
+    root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+    server_root: Rails.root.join('public')
+end
 
-  c.allow_fetch_url  = true
-  c.allow_fetch_file = true
+# Logger
+Dragonfly.logger = Rails.logger
 
-  c.url_format = '/images/dynamic/:job/:basename.:format'
+# Mount as middleware
+Rails.application.middleware.use Dragonfly::Middleware
+
+# Add model functionality
+if defined?(ActiveRecord::Base)
+  ActiveRecord::Base.extend Dragonfly::Model
+  ActiveRecord::Base.extend Dragonfly::Model::Validations
 end
